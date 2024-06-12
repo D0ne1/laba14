@@ -23,6 +23,7 @@ namespace ClassLibrary1
 
     public class Workshop
     {
+        public string Name { get; set; }
         public List<Auto> Cars { get; set; }
 
         public Workshop()
@@ -32,6 +33,7 @@ namespace ClassLibrary1
 
         public void AddCar(Auto car)
         {
+            car.RandomInit();
             Cars.Add(car);
         }
     }
