@@ -1,0 +1,12 @@
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\bin\Debug\net8.0\ClassLibrary1.deps.json
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\bin\Debug\net8.0\ClassLibrary1.dll
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\bin\Debug\net8.0\ClassLibrary1.pdb
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\obj\Debug\net8.0\ClassLibrary1.GeneratedMSBuildEditorConfig.editorconfig
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\obj\Debug\net8.0\ClassLibrary1.AssemblyInfoInputs.cache
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\obj\Debug\net8.0\ClassLibrary1.AssemblyInfo.cs
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\obj\Debug\net8.0\ClassLibrary1.csproj.CoreCompileInputs.cache
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\obj\Debug\net8.0\ClassLibrary1.sourcelink.json
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\obj\Debug\net8.0\ClassLibrary1.dll
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\obj\Debug\net8.0\refint\ClassLibrary1.dll
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\obj\Debug\net8.0\ClassLibrary1.pdb
+C:\ДАНИИЛ\универ\прога\laba14\laba14\ClassLibrary1\obj\Debug\net8.0\ref\ClassLibrary1.dll
