@@ -44,6 +44,7 @@ namespace laba14
                 }
             }
         }
+
         public static void HandleFactoryMenu(Factory factory)
         {
             while (true)
@@ -62,27 +63,34 @@ namespace laba14
                 switch (choice)
                 {
                     case "1":
-                        var whereResult = QueryWhere(factory);
-                        PrintCars("Where", whereResult);
+                        var (whereResultLinq, whereResultExt) = QueryWhere(factory);
+                        PrintCars("Where (LINQ)", whereResultLinq);
+                        PrintCars("Where (методы расширения)", whereResultExt);
                         break;
                     case "2":
                         HandleUnionExceptIntersect(factory);
                         break;
                     case "3":
-                        var (sumCost, maxCost, minCost, avgCost) = QueryAggregation(factory);
-                        PrintAggregationResults(sumCost, maxCost, minCost, avgCost);
+                        var (sumCostLinq, maxCostLinq, minCostLinq, avgCostLinq, sumCostExt, maxCostExt, minCostExt, avgCostExt) = QueryAggregation(factory);
+                        Console.WriteLine("Linq");
+                        PrintAggregationResults(sumCostLinq, maxCostLinq, minCostLinq, avgCostLinq);
+                        Console.WriteLine("Методы расширения");
+                        PrintAggregationResults(sumCostExt, maxCostExt, minCostExt, avgCostExt);
                         break;
                     case "4":
-                        var groupedCars = QueryGroupBy(factory);
-                        PrintGroupedCars(groupedCars);
+                        var (groupedCarsLinq, groupedCarsExt) = QueryGroupBy(factory);
+                        PrintGroupedCars("Группировка (LINQ)", groupedCarsLinq);
+                        PrintGroupedCars("Группировка (методы расширения)", groupedCarsExt);
                         break;
                     case "5":
-                        var carsByBrandCount = QueryLet(factory);
-                        PrintBrandCounts(carsByBrandCount);
+                        var (carsByBrandCountLinq, carsByBrandCountExt) = QueryLet(factory);
+                        PrintBrandCounts("Let (LINQ)", carsByBrandCountLinq);
+                        PrintBrandCounts("Let (методы расширения)", carsByBrandCountExt);
                         break;
                     case "6":
-                        var joinedCars = QueryJoin(factory);
-                        PrintJoinedCars(joinedCars);
+                        var (joinedCarsLinq, joinedCarsExt) = QueryJoin(factory);
+                        PrintJoinedCars("Join (LINQ)", joinedCarsLinq);
+                        PrintJoinedCars("Join (методы расширения)", joinedCarsExt);
                         break;
                     case "0":
                         return;
@@ -109,20 +117,26 @@ namespace laba14
                 switch (choice)
                 {
                     case "1":
-                        var whereResult = QueryWhere(myCollection);
-                        PrintCars("Where", whereResult);
+                        var (whereResultLinq, whereResultExt) = QueryWhere(myCollection);
+                        PrintCars("Where (LINQ)", whereResultLinq);
+                        PrintCars("Where (методы расширения)", whereResultExt);
                         break;
                     case "2":
-                        var countResult = QueryCount(myCollection);
-                        Console.WriteLine($"Количество элементов: {countResult}");
+                        var (countResultLinq, countResultExt) = QueryCount(myCollection);
+                        Console.WriteLine($"Количество элементов (LINQ): {countResultLinq}");
+                        Console.WriteLine($"Количество элементов (методы расширения): {countResultExt}");
                         break;
                     case "3":
-                        var (sumCost, maxCost, minCost, avgCost) = QueryAggregation(myCollection);
-                        PrintAggregationResults(sumCost, maxCost, minCost, avgCost);
+                        var (sumCostLinq, maxCostLinq, minCostLinq, avgCostLinq, sumCostExt, maxCostExt, minCostExt, avgCostExt) = QueryAggregation(myCollection);
+                        Console.WriteLine("Linq");
+                        PrintAggregationResults(sumCostLinq, maxCostLinq, minCostLinq, avgCostLinq);
+                        Console.WriteLine("Методы расширения");
+                        PrintAggregationResults(sumCostExt, maxCostExt, minCostExt, avgCostExt);
                         break;
                     case "4":
-                        var groupedCars = QueryGroupBy(myCollection);
-                        PrintGroupedCars(groupedCars);
+                        var (groupedCarsLinq, groupedCarsExt) = QueryGroupBy(myCollection);
+                        PrintGroupedCars("Группировка (LINQ)", groupedCarsLinq);
+                        PrintGroupedCars("Группировка (методы расширения)", groupedCarsExt);
                         break;
                     case "0":
                         return;
@@ -141,8 +155,8 @@ namespace laba14
 
             for (int i = 0; i < 15; i++)
             {
-                workshop1.AddCar(new Auto("BMW", "Red", 2015, 20000, 250));
-                workshop2.AddCar(new Auto("Audi", "Blue", 2016, 25000, 240));
+                workshop1.AddCar(new Auto());
+                workshop2.AddCar(new Auto());
             }
 
             factory.AddWorkshop(workshop1);
@@ -156,15 +170,17 @@ namespace laba14
             MyCollection<Auto> myCollection = new MyCollection<Auto>();
             for (int i = 0; i < 10; i++)
             {
-                myCollection.Add(new Auto("Brand" + (i % 3), "Color" + i, 2000 + i, i * 1000, 150 + i));
+                Auto auto = new Auto();
+                auto.RandomInit();
+                myCollection.Add(auto);
             }
 
             return myCollection;
         }
 
-        // Methods for Factory and Workshops
+        // Методы для Factory и Workshops
 
-        public static List<Auto> QueryWhere(Factory factory)
+        public static (List<Auto> linq, List<Auto> ext) QueryWhere(Factory factory)
         {
             var allCars = factory.Workshops.SelectMany(w => w.Cars).ToList();
 
@@ -176,7 +192,7 @@ namespace laba14
             // b) С использованием методов расширения
             var query1b = allCars.Where(car => car.Brand == "BMW");
 
-            return query1a.ToList(); // Или query1b.ToList()
+            return (query1a.ToList(), query1b.ToList());
         }
 
         public static void HandleUnionExceptIntersect(Factory factory)
@@ -184,7 +200,7 @@ namespace laba14
             var workshop3 = new Workshop();
             for (int i = 0; i < 15; i++)
             {
-                workshop3.AddCar(new Car());
+                workshop3.AddCar(new Auto());
             }
 
             factory.AddWorkshop(workshop3);
@@ -213,7 +229,26 @@ namespace laba14
             var queryExcept = allCars.Except(allCarsUpdated);
             var queryIntersect = allCars.Intersect(allCarsUpdated);
 
-            Console.WriteLine("Результаты операций над множествами:");
+            Console.WriteLine("Результаты операций над множествами (LINQ):");
+            Console.WriteLine("Union:");
+            foreach (var car in queryUnion1)
+            {
+                Console.WriteLine(car.ToString());
+            }
+
+            Console.WriteLine("\nExcept:");
+            foreach (var car in queryExcept1)
+            {
+                Console.WriteLine(car.ToString());
+            }
+
+            Console.WriteLine("\nIntersect:");
+            foreach (var car in queryIntersect1)
+            {
+                Console.WriteLine(car.ToString());
+            }
+
+            Console.WriteLine("\nРезультаты операций над множествами (методы расширения):");
             Console.WriteLine("Union:");
             foreach (var car in queryUnion)
             {
@@ -232,22 +267,17 @@ namespace laba14
                 Console.WriteLine(car.ToString());
             }
         }
-        public static (double sumCost, double maxCost, double minCost, double avgCost) QueryAggregation(Factory factory)
+
+        public static (double sumCostLinq, double maxCostLinq, double minCostLinq, double avgCostLinq,
+                       double sumCostExt, double maxCostExt, double minCostExt, double avgCostExt) QueryAggregation(Factory factory)
         {
             var allCars = factory.Workshops.SelectMany(w => w.Cars).ToList();
 
             // a) С использованием LINQ запросов
-            var sumCost1 = (from car in allCars
-                            select car.Cost).Sum();
-
-            var maxCost1 = (from car in allCars
-                            select car.Cost).Max();
-
-            var minCost1 = (from car in allCars
-                            select car.Cost).Min();
-
-            var avgCost1 = (from car in allCars
-                            select car.Cost).Average();
+            var sumCost1 = (from car in allCars select car.Cost).Sum();
+            var maxCost1 = (from car in allCars select car.Cost).Max();
+            var minCost1 = (from car in allCars select car.Cost).Min();
+            var avgCost1 = (from car in allCars select car.Cost).Average();
 
             // b) С использованием методов расширения
             var sumCost2 = allCars.Sum(car => car.Cost);
@@ -255,167 +285,170 @@ namespace laba14
             var minCost2 = allCars.Min(car => car.Cost);
             var avgCost2 = allCars.Average(car => car.Cost);
 
-            return (sumCost1, maxCost1, minCost1, avgCost1); // Или (sumCost2, maxCost2, minCost2, avgCost2)
+            return (sumCost1, maxCost1, minCost1, avgCost1, sumCost2, maxCost2, minCost2, avgCost2);
         }
 
-        public static IEnumerable<IGrouping<string, Auto>> QueryGroupBy(Factory factory)
+        public static (IEnumerable<IGrouping<string, Auto>> linq, IEnumerable<IGrouping<string, Auto>> ext) QueryGroupBy(Factory factory)
         {
             var allCars = factory.Workshops.SelectMany(w => w.Cars).ToList();
 
             // a) С использованием LINQ запросов
-            var groupedCarsByBrand1 = from car in allCars
-                                      group car by car.Brand into carGroup
-                                      select carGroup;
+            var groupedCars1 = from car in allCars
+                               group car by car.Brand;
 
             // b) С использованием методов расширения
-            var groupedCarsByBrand2 = allCars.GroupBy(car => car.Brand);
+            var groupedCars2 = allCars.GroupBy(car => car.Brand);
 
-            return groupedCarsByBrand1; // Или groupedCarsByBrand2
+            return (groupedCars1, groupedCars2);
         }
+        
 
-        public static IEnumerable<dynamic> QueryLet(Factory factory)
+        public static (IEnumerable<object> linq, IEnumerable<object> ext) QueryLet(Factory factory)
         {
             var allCars = factory.Workshops.SelectMany(w => w.Cars).ToList();
 
             // a) С использованием LINQ запросов
             var carsByBrandCount1 = from car in allCars
-                                    group car by car.Brand into carGroup
-                                    let count = carGroup.Count()
-                                    select new { Brand = carGroup.Key, Count = count };
+                                    let brand = car.Brand
+                                    group brand by brand into brandGroup
+                                    select new { Brand = brandGroup.Key, Count = brandGroup.Count() };
 
             // b) С использованием методов расширения
-            var carsByBrandCount2 = allCars.GroupBy(car => car.Brand)
-                                           .Select(carGroup => new { Brand = carGroup.Key, Count = carGroup.Count() });
+            var carsByBrandCount2 = allCars
+                .Select(car => car.Brand)
+                .GroupBy(brand => brand)
+                .Select(group => new { Brand = group.Key, Count = group.Count() });
 
-            return carsByBrandCount1; // Или carsByBrandCount2
+            return (carsByBrandCount1, carsByBrandCount2);
         }
-        public static IEnumerable<dynamic> QueryJoin(Factory factory)
+
+        public static (IEnumerable<object> linq, IEnumerable<object> ext) QueryJoin(Factory factory)
         {
-            var workshop1 = factory.Workshops.Dequeue(); 
-            var workshop2 = factory.Workshops.Dequeue(); 
+            var allCars = factory.Workshops.SelectMany(w => w.Cars).ToList();
+            var workshopIds = factory.Workshops.Select((w, index) => new { Workshop = w, Id = index }).ToList();
 
             // a) С использованием LINQ запросов
-            var joinedCars1 = from car1 in workshop1.Cars
-                              join car2 in workshop2.Cars
-                              on car1.Brand equals car2.Brand
-                              select new { Brand = car1.Brand, Cost1 = car1.Cost, Cost2 = car2.Cost };
+            var joinedCars1 = from workshop in workshopIds
+                              from car in workshop.Workshop.Cars
+                              select new { WorkshopId = workshop.Id, Car = car };
 
             // b) С использованием методов расширения
-            var joinedCars2 = workshop1.Cars.Join(workshop2.Cars,
-                                                  car1 => car1.Brand,
-                                                  car2 => car2.Brand,
-                                                  (car1, car2) => new { Brand = car1.Brand, Cost1 = car1.Cost, Cost2 = car2.Cost });
+            var joinedCars2 = workshopIds
+                .SelectMany(workshop => workshop.Workshop.Cars,
+                            (workshop, car) => new { WorkshopId = workshop.Id, Car = car });
 
-            return joinedCars1; // Или joinedCars2
+            return (joinedCars1, joinedCars2);
         }
 
-        public static List<Auto> QueryWhere(MyCollection<Auto> collection)
+        // Методы для MyCollection
+
+        public static (List<Auto> linq, List<Auto> ext) QueryWhere(MyCollection<Auto> myCollection)
         {
             // a) С использованием LINQ запросов
-            var query1a = from car in collection
-                          where car.Brand.Contains("Brand1")
+            var query1a = from car in myCollection
+                          where car.Brand == "BMW"
                           select car;
 
             // b) С использованием методов расширения
-            var query1b = collection.Where(car => car.Brand.Contains("Brand1"));
+            var query1b = myCollection.Where(car => car.Brand == "BMW");
 
-            return query1a.ToList(); // Или query1b.ToList()
+            return (query1a.ToList(), query1b.ToList());
         }
 
-        public static int QueryCount(MyCollection<Auto> collection)
+        public static (int linq, int ext) QueryCount(MyCollection<Auto> myCollection)
         {
             // a) С использованием LINQ запросов
-            var count1a = (from car in collection
-                           select car).Count();
+            var count1 = (from car in myCollection select car).Count();
 
             // b) С использованием методов расширения
-            var count1b = collection.Count();
+            var count2 = myCollection.Count();
 
-            return count1a; // Или count1b
+            return (count1, count2);
         }
 
-        public static (double sumCost, double maxCost, double minCost, double avgCost) QueryAggregation(MyCollection<Auto> collection)
+        public static (double sumCostLinq, double maxCostLinq, double minCostLinq, double avgCostLinq,
+                       double sumCostExt, double maxCostExt, double minCostExt, double avgCostExt) QueryAggregation(MyCollection<Auto> myCollection)
         {
             // a) С использованием LINQ запросов
-            var sumCost1 = (from car in collection select car.Cost).Sum();
-            var maxCost1 = (from car in collection select car.Cost).Max();
-            var minCost1 = (from car in collection select car.Cost).Min();
-            var avgCost1 = (from car in collection select car.Cost).Average();
+            var sumCost1 = (from car in myCollection select car.Cost).Sum();
+            var maxCost1 = (from car in myCollection select car.Cost).Max();
+            var minCost1 = (from car in myCollection select car.Cost).Min();
+            var avgCost1 = (from car in myCollection select car.Cost).Average();
 
             // b) С использованием методов расширения
-            var sumCost2 = collection.Sum(car => car.Cost);
-            var maxCost2 = collection.Max(car => car.Cost);
-            var minCost2 = collection.Min(car => car.Cost);
-            var avgCost2 = collection.Average(car => car.Cost);
+            var sumCost2 = myCollection.Sum(car => car.Cost);
+            var maxCost2 = myCollection.Max(car => car.Cost);
+            var minCost2 = myCollection.Min(car => car.Cost);
+            var avgCost2 = myCollection.Average(car => car.Cost);
 
-            return (sumCost1, maxCost1, minCost1, avgCost1); // Или (sumCost2, maxCost2, minCost2, avgCost2)
+            return (sumCost1, maxCost1, minCost1, avgCost1, sumCost2, maxCost2, minCost2, avgCost2);
         }
 
-        public static IEnumerable<IGrouping<string, Auto>> QueryGroupBy(MyCollection<Auto> collection)
+        public static (IEnumerable<IGrouping<string, Auto>> linq, IEnumerable<IGrouping<string, Auto>> ext) QueryGroupBy(MyCollection<Auto> myCollection)
         {
             // a) С использованием LINQ запросов
-            var groupedCarsByBrand1 = from car in collection
-                                      group car by car.Brand into carGroup
-                                      select carGroup;
+            var groupedCars1 = from car in myCollection
+                               group car by car.Brand;
 
             // b) С использованием методов расширения
-            var groupedCarsByBrand2 = collection.GroupBy(car => car.Brand);
+            var groupedCars2 = myCollection.GroupBy(car => car.Brand);
 
-            return groupedCarsByBrand1; 
+            return (groupedCars1, groupedCars2);
         }
 
-        public static void PrintCars(string queryName, List<Auto> cars)
+        // Методы вывода результатов
+
+        public static void PrintCars(string queryType, IEnumerable<Auto> cars)
         {
-            Console.WriteLine($"Результаты запроса {queryName}:");
-            foreach (Auto car in cars)
+            Console.WriteLine($"Результаты запроса ({queryType}):");
+            foreach (var car in cars)
             {
-                Console.WriteLine(car);
+                Console.WriteLine(car.ToString());
             }
-            Console.WriteLine();
         }
 
         public static void PrintAggregationResults(double sumCost, double maxCost, double minCost, double avgCost)
         {
-            Console.WriteLine("Результаты агрегирования данных:");
-            Console.WriteLine($"Сумма стоимости всех автомобилей: {sumCost}");
-            Console.WriteLine($"Максимальная стоимость автомобиля: {maxCost}");
-            Console.WriteLine($"Минимальная стоимость автомобиля: {minCost}");
-            Console.WriteLine($"Средняя стоимость автомобиля: {avgCost}");
-            Console.WriteLine();
+            Console.WriteLine($"Sum: {sumCost}");
+            Console.WriteLine($"Max: {maxCost}");
+            Console.WriteLine($"Min: {minCost}");
+            Console.WriteLine($"Average: {avgCost}");
         }
 
-        public static void PrintGroupedCars(IEnumerable<IGrouping<string, Auto>> groupedCars)
+        public static void PrintGroupedCars(string queryType, IEnumerable<IGrouping<string, Auto>> groupedCars)
         {
-            Console.WriteLine("Результаты группировки данных:");
+            int count = 0;
+            Console.WriteLine($"Результаты группировки ({queryType}):");
             foreach (var group in groupedCars)
             {
-                Console.WriteLine($"Бренд: {group.Key}");
                 foreach (var car in group)
                 {
-                    Console.WriteLine($"- {car.ToString()}");
+                    count++;
+                }
+                Console.WriteLine($"Бренд: {group.Key}, Количество элементов этого типа: {count}");
+                foreach (var car in group)
+                {
+                    Console.WriteLine(car.ToString());
                 }
             }
-            Console.WriteLine();
         }
 
-        public static void PrintBrandCounts(IEnumerable<dynamic> carsByBrandCount)
+        public static void PrintBrandCounts(string queryType, IEnumerable<object> carsByBrandCount)
         {
-            Console.WriteLine("Результаты запроса с оператором let:");
+            Console.WriteLine($"Результаты запроса (оператор let) ({queryType}):");
             foreach (var item in carsByBrandCount)
             {
-                Console.WriteLine($"Бренд: {item.Brand}, Количество: {item.Count}");
+                Console.WriteLine($"Бренд: {item.GetType().GetProperty("Brand").GetValue(item)}, Количество: {item.GetType().GetProperty("Count").GetValue(item)}");
             }
-            Console.WriteLine();
         }
 
-        public static void PrintJoinedCars(IEnumerable<dynamic> joinedCars)
+        public static void PrintJoinedCars(string queryType, IEnumerable<object> joinedCars)
         {
-            Console.WriteLine("Результаты соединения данных:");
+            Console.WriteLine($"Результаты соединения ({queryType}):");
             foreach (var item in joinedCars)
             {
-                Console.WriteLine($"Бренд: {item.Brand}, Стоимость 1: {item.Cost1}, Стоимость 2: {item.Cost2}");
+                Console.WriteLine($"WorkshopId: {item.GetType().GetProperty("WorkshopId").GetValue(item)}, Car: {item.GetType().GetProperty("Car").GetValue(item)}");
             }
-            Console.WriteLine();
         }
     }
 }

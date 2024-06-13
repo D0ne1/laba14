@@ -13,9 +13,41 @@ namespace laba14
 {
     public class MyCollection<T> : MyList<T>, IEnumerable<T>, IList<T> where T : IInit, ICloneable, IComparable, new()
     {
-        public bool IsReadOnly => throw new NotImplementedException();
+        public bool IsReadOnly => false;
 
-        public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public T this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= count)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
+                }
+
+                Point<T> current = beg;
+                for (int i = 0; i < index; i++)
+                {
+                    current = current.Next;
+                }
+
+                return current.Data;
+            }
+            set
+            {
+                if (index < 0 || index >= count)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
+                }
+
+                Point<T> current = beg;
+                for (int i = 0; i < index; i++)
+                {
+                    current = current.Next;
+                }
+
+                current.Data = value;
+            }
+        }
 
         public MyCollection() : base() { }
         public MyCollection(int len) : base(len) { }
@@ -23,11 +55,11 @@ namespace laba14
 
         public IEnumerator<T> GetEnumerator() => this.GetData();
 
-
         IEnumerator IEnumerable.GetEnumerator() //метод для перебора значений
         {
             return GetEnumerator();
         }
+
         IEnumerator<T> GetData()
         {
             Point<T> current = beg;
@@ -170,7 +202,8 @@ namespace laba14
             return false;
         }
     }
-    public class MyEnumerator<T> : IEnumerator<T> where T : IInit, ICloneable, IComparable, new() //свой перечислитель 
+
+    public class MyEnumerator<T> : IEnumerator<T> where T : IInit, ICloneable, IComparable, new()
     {
         Point<T> beg;
         Point<T> curr;
@@ -180,6 +213,7 @@ namespace laba14
             beg = coll.beg;
             curr = beg;
         }
+
         public T Current => curr.Data;
 
         object IEnumerator.Current => throw new NotImplementedException();
