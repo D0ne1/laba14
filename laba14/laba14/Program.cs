@@ -420,11 +420,7 @@ namespace laba14
             Console.WriteLine($"Результаты группировки ({queryType}):");
             foreach (var group in groupedCars)
             {
-                foreach (var car in group)
-                {
-                    count++;
-                }
-                Console.WriteLine($"Бренд: {group.Key}, Количество элементов этого типа: {count}");
+                Console.WriteLine($"Бренд: {group.Key}, Количество элементов этого типа: {group.Count()}");
                 foreach (var car in group)
                 {
                     Console.WriteLine(car.ToString());

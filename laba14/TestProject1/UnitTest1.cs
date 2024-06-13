@@ -6,14 +6,33 @@ namespace TestProject1
     [TestClass]
     public class UnitTest1
     {
-        private Factory factory;
-        private MyCollection<Auto> myCollection;
+
+        public Factory factory = new Factory();
+        public MyCollection<Auto> myCollection = new MyCollection<Auto>();
 
         [TestInitialize]
         public void Initialize()
         {
-            factory = Program.InitializeFactory();
-            myCollection = Program.InitializeMyCollection();
+            Workshop workshop1 = new Workshop();
+            Workshop workshop2 = new Workshop();
+
+            workshop2.Add(new Auto("Жигули", "green", 2000, 12321242, 23));
+            workshop1.Add(new Auto("Audi","blue",2010,1232142,2));
+            workshop1.Add(new Auto("BMW","blue",2000,1232142,23));
+            workshop1.Add(new Auto("Volvo","red",2000,1232142,23));
+
+            workshop2.Add(new Auto("Жигули", "green", 2000, 12321242, 23));
+            workshop2.Add(new Auto("Audi", "white", 2010, 1232142, 2));
+            workshop2.Add(new Auto("BMW", "blue", 2000, 12321242, 23));
+            workshop2.Add(new Auto("Tayota", "blue", 2011, 1232142, 223));
+
+            factory.AddWorkshop(workshop1);
+            factory.AddWorkshop(workshop2);
+
+            myCollection.Add(new Auto("Audi", "white", 2010, 1232142, 20));
+            myCollection.Add(new Auto("BMW", "green", 2010, 22333, 2));
+            myCollection.Add(new Auto("Porshe", "white", 2020, 1323231, 2));
+            myCollection.Add(new Auto("Mersedes", "white", 2010, 1232142, 12));
         }
 
         [TestMethod]
@@ -27,7 +46,31 @@ namespace TestProject1
             // Проверяем, что все элементы имеют бренд "BMW"
             Assert.IsTrue(whereResultLinq.All(car => car.Brand == "BMW"));
         }
+        [TestMethod]
+        public void TestQueryAggregation_LINQ()
+        {
+            var (sumCostLinq, maxCostLinq, minCostLinq, avgCostLinq,
+                 _, _, _, _) = Program.QueryAggregation(factory);
 
+            // Проверяем, что значения суммы, максимума, минимума и среднего соответствуют ожидаемым
+            Assert.AreEqual(43124436, sumCostLinq); // Замените на ожидаемые значения
+            Assert.AreEqual(12321242, maxCostLinq); // Замените на ожидаемые значения
+            Assert.AreEqual(1232142, minCostLinq); // Замените на ожидаемые значения
+            Assert.AreEqual(5390554.5, avgCostLinq); // Замените на ожидаемые значения
+        }
+
+        [TestMethod]
+        public void TestQueryAggregation_ExtensionMethods()
+        {
+            var (_, _, _, _,
+                 sumCostExt, maxCostExt, minCostExt, avgCostExt) = Program.QueryAggregation(factory);
+
+            // Проверяем, что значения суммы, максимума, минимума и среднего соответствуют ожидаемым
+            Assert.AreEqual(43124436, sumCostExt); // Замените на ожидаемые значения
+            Assert.AreEqual(12321242, maxCostExt); // Замените на ожидаемые значения
+            Assert.AreEqual(1232142, minCostExt); // Замените на ожидаемые значения
+            Assert.AreEqual(5390554.5, avgCostExt); // Замените на ожидаемые значения
+        }
         [TestMethod]
         public void TestQueryWhere_ExtensionMethods()
         {
@@ -46,7 +89,7 @@ namespace TestProject1
             var (countResultLinq, _) = Program.QueryCount(myCollection);
 
             // Проверяем, что количество элементов соответствует ожидаемому
-            Assert.AreEqual(10, countResultLinq);
+            Assert.AreEqual(4, countResultLinq);
         }
 
         [TestMethod]
@@ -55,7 +98,7 @@ namespace TestProject1
             var (_, countResultExt) = Program.QueryCount(myCollection);
 
             // Проверяем, что количество элементов соответствует ожидаемому
-            Assert.AreEqual(10, countResultExt);
+            Assert.AreEqual(4, countResultExt);
         }
 
         [TestMethod]

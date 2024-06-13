@@ -36,5 +36,9 @@ namespace ClassLibrary1
             car.RandomInit();
             Cars.Add(car);
         }
+        public void Add(Auto auto)
+        {
+            Cars.Add(auto);
+        }
     }
 }
