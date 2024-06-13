@@ -14,10 +14,9 @@ namespace laba14
     {
         public static void Main()
         {
-            // Инициализация коллекций
+            // Инициализация коллекций 
             Factory factory = InitializeFactory();
             MyCollection<Auto> myCollection = InitializeMyCollection();
-
             // Текстовое меню
             while (true)
             {

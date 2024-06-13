@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4436A9C1-D666-4D3A-9B0A-E1D67F7AAEE4}|TestProject1\\TestProject1.csproj|c:\\\u0434\u0430\u043D\u0438\u0438\u043B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\testproject1\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4436A9C1-D666-4D3A-9B0A-E1D67F7AAEE4}|TestProject1\\TestProject1.csproj|solutionrelative:testproject1\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D03C3523-92B1-47D6-83D6-89368C9BC72E}|laba14\\laba14.csproj|c:\\\u0434\u0430\u043D\u0438\u0438\u043B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D03C3523-92B1-47D6-83D6-89368C9BC72E}|laba14\\laba14.csproj|solutionrelative:laba14\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{507C4379-8CE2-4E9A-B8DC-41F3593B3C8C}|ClassLibrary1\\ClassLibrary1.csproj|c:\\\u0434\u0430\u043D\u0438\u0438\u043B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\classlibrary1\\factory\u0026workshop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{507C4379-8CE2-4E9A-B8DC-41F3593B3C8C}|ClassLibrary1\\ClassLibrary1.csproj|solutionrelative:classlibrary1\\factory\u0026workshop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D03C3523-92B1-47D6-83D6-89368C9BC72E}|laba14\\laba14.csproj|c:\\\u0434\u0430\u043D\u0438\u0438\u043B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\mycollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,19 +38,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MyCollection.cs",
-              "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\MyCollection.cs",
-              "RelativeDocumentMoniker": "laba14\\MyCollection.cs",
-              "ToolTip": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\MyCollection.cs",
-              "RelativeToolTip": "laba14\\MyCollection.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAyAAAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\Program.cs",
+              "RelativeDocumentMoniker": "laba14\\Program.cs",
+              "ToolTip": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\Program.cs",
+              "RelativeToolTip": "laba14\\Program.cs",
+              "ViewState": "AQIAAKABAAAAAAAAAAA2wMQBAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T03:09:50.139Z",
+              "WhenOpened": "2024-06-12T09:47:23.889Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\TestProject1\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "TestProject1\\UnitTest1.cs",
+              "ToolTip": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\TestProject1\\UnitTest1.cs",
+              "RelativeToolTip": "TestProject1\\UnitTest1.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAAMwDoAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T05:24:11.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Factory\u0026Workshop.cs",
+              "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\ClassLibrary1\\Factory\u0026Workshop.cs",
+              "RelativeDocumentMoniker": "ClassLibrary1\\Factory\u0026Workshop.cs",
+              "ToolTip": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\ClassLibrary1\\Factory\u0026Workshop.cs",
+              "RelativeToolTip": "ClassLibrary1\\Factory\u0026Workshop.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAzwBkAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T05:21:48.606Z",
               "EditorCaption": ""
             },
             {
@@ -51,7 +86,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
+              "Title": "MyCollection.cs",
+              "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\MyCollection.cs",
+              "RelativeDocumentMoniker": "laba14\\MyCollection.cs",
+              "ToolTip": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\MyCollection.cs",
+              "RelativeToolTip": "laba14\\MyCollection.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T03:09:50.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Car.cs",
               "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\ClassLibrary1\\Car.cs",
               "RelativeDocumentMoniker": "ClassLibrary1\\Car.cs",
@@ -63,7 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Point.cs",
               "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\Point.cs",
               "RelativeDocumentMoniker": "laba14\\Point.cs",
@@ -75,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "MyList.cs",
               "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\MyList.cs",
               "RelativeDocumentMoniker": "laba14\\MyList.cs",
@@ -84,19 +131,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-12T12:01:54.282Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\Program.cs",
-              "RelativeDocumentMoniker": "laba14\\Program.cs",
-              "ToolTip": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u043F\u0440\u043E\u0433\u0430\\laba14\\laba14\\laba14\\Program.cs",
-              "RelativeToolTip": "laba14\\Program.cs",
-              "ViewState": "AQIAAHMAAAAAAAAAAAAhwIQAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T09:47:23.889Z",
-              "EditorCaption": ""
             }
           ]
         },
